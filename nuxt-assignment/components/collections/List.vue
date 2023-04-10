@@ -21,7 +21,7 @@
           <div
             class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg"
           >
-            <!-- Bank table start -->
+            <!-- Employe table start -->
             <table class="min-w-full divide-y divide-gray-300">
               <thead class="bg-gray-50 tree-table">
                 <tr>
@@ -198,6 +198,7 @@
                 </tr>
               </tbody>
             </table>
+            <!-- Employe table -->
           </div>
         </div>
       </div>
