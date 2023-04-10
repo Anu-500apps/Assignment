@@ -14,6 +14,7 @@
     <CollectionsEdit
       v-if="openEditModal"
       :prefillForm="prefillForm"
+      @update-form="updateFormData"
     ></CollectionsEdit>
   </div>
 </template>
@@ -56,5 +57,10 @@ const editEmployeForm = (employe) => {
 const deleteRow = (index) => {
   employeDetails.value.splice(index, 1);
   localStorage.setItem("usersList", JSON.stringify(employeDetails.value));
+};
+
+// Updates Employe details
+const updateFormData = (employee) => {
+  employeDetails.value = employee;
 };
 </script>
