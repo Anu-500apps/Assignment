@@ -9,6 +9,7 @@
       :employeDetails="employeDetails"
       @edit-row="editEmployeForm"
       @delete-row="deleteRow"
+      @search-employe-details="searchEmploye"
     >
     </CollectionsList>
     <CollectionsEdit
@@ -38,13 +39,15 @@ onMounted(() => {
 // To get Employe details
 const employees = () => {
   const getEmployes = localStorage.getItem("usersList");
-  employeDetails.value = JSON.parse(getEmployes);
+  if (getEmployes && getEmployes.length)
+    employeDetails.value = JSON.parse(getEmployes);
 };
 
 // To submit employe form when submitform
 const submitEmployeForm = (form) => {
-  employeDetails.value.push(form);
+  employeDetails.value.unshift(form);
   localStorage.setItem("usersList", JSON.stringify(employeDetails.value));
+  openModal.value = false;
 };
 
 // To prefill employee details
@@ -62,5 +65,9 @@ const deleteRow = (index) => {
 // Updates Employe details
 const updateFormData = (employee) => {
   employeDetails.value = employee;
+};
+
+const searchEmploye = (results) => {
+  if (results && results.length) employeDetails.value = results;
 };
 </script>

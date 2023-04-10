@@ -1,9 +1,15 @@
 <template>
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
-      <div class="sm:flex-auto font-serif">
-        <input type="search" v-model="search" class="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Search..."/>
-        <button type="button">Search</button>
+      <div class="sm:flex-auto font-serif flex">
+        <input
+          type="search"
+          v-model="search"
+          class="block rounded-md border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-4"
+          placeholder=" Search..."
+          
+        />
+        <button type="button" @click="searchData(search)" class="mt-2 block rounded-md bg-gray-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Search</button>
       </div>
       <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
         <button
@@ -219,7 +225,12 @@ import {
 } from "@headlessui/vue";
 import { ExclamationTriangleIcon } from "@heroicons/vue/24/outline";
 // Define Emits
-const emits = defineEmits(["open-modal", "edit-row", "delete-row"]);
+const emits = defineEmits([
+  "open-modal",
+  "edit-row",
+  "delete-row",
+  "search-employe-details",
+]);
 // Define Props
 const props = defineProps({
   openSidebar: Boolean,
@@ -227,9 +238,15 @@ const props = defineProps({
 });
 const open = ref(false);
 
-
 // when open click on delete on row
 const deleteEmploye = (index: Number) => {
   emits("delete-row", index);
+};
+
+const searchData = (input: String) => {
+  let results = props.employeDetails.filter((item: any) =>
+    item.name.includes(input)
+  );
+  emits("search-employe-details", results);
 };
 </script>

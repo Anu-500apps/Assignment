@@ -20,7 +20,7 @@
               <div>
                 <h4>Edit Employee</h4>
                 <!-- Start employe Form -->
-                <form>
+                <form @submit.prevent>
                   <div
                     class="relative mt-6 flex-1 px-4 sm:px-6 border ml-2 mr-2"
                   >
@@ -120,8 +120,9 @@
                         </div>
                         <div>
                           <button
+                            type="submit"
                             class="rounded bg-indigo-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            @click="updateEmployeForm"
+                            @click="updateEmployeForm(),open=false"
                           >
                             Update
                           </button>
@@ -153,7 +154,7 @@ import {
 const open = ref(true);
 const props = defineProps({
   open: Boolean,
-  prefillForm:Object
+  prefillForm: Object,
 });
 // Define Emits
 const emits = defineEmits(["update-form"]);

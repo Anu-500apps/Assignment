@@ -20,7 +20,7 @@
               <div>
                 <h4>Add Employee</h4>
                 <!-- Start Employee Form -->
-                <form>
+                <form @submit.prevent>
                   <div
                     class="relative mt-6 flex-1 px-4 sm:px-6 border ml-2 mr-2"
                   >
@@ -47,7 +47,7 @@
                       >
                       <div class="mt-2">
                         <input
-                        placeholder="Enter age"
+                          placeholder="Enter Age"
                           id="age"
                           v-model="formData.age"
                           type="number"
@@ -102,7 +102,7 @@
                           name="department"
                           class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         >
-                          <option>Accounts</option>
+                          <option value="Accounts">Accounts</option>
                           <option value="Admin">Admin</option>
                           <option value="IT">IT</option>
                         </select>
@@ -120,8 +120,9 @@
                         </div>
                         <div>
                           <button
+                            type="submit"
                             class="rounded bg-indigo-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            @click="submitEmployeeForm"
+                            @click="submitEmployeeForm(), (open = false)"
                           >
                             Submit
                           </button>
@@ -166,6 +167,5 @@ const formData = ref({
 
 const submitEmployeeForm = () => {
   emits("submit-form", formData.value);
-  console.log("------------>", formData);
 };
 </script>
