@@ -77,7 +77,7 @@
                       <label
                         for="date"
                         class="block text-sm font-medium leading-6 text-gray-900"
-                        >Date Of Joinig
+                        >Date Of Joining
                       </label>
                       <div class="mt-2">
                         <input
@@ -160,7 +160,7 @@ const emits = defineEmits(["submit-form"]);
 const formData = ref({
   name: "",
   age: "",
-  selected: "",
+  gender: "",
   date_of_joining: "",
   department: "",
 });

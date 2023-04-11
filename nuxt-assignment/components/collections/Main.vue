@@ -24,10 +24,11 @@ import { useCounterStore } from "~/stores/local";
 const openModal = ref(false);
 const employeDetails = ref([]);
 const openEditModal = ref(false);
+const employeeIndex = ref(0);
 const prefillForm = ref({
   name: "",
   age: "",
-  selected: "",
+  gender: "",
   date_of_joining: "",
   department: "",
 });
@@ -48,11 +49,14 @@ const submitEmployeForm = (form) => {
   employeDetails.value.unshift(form);
   localStorage.setItem("usersList", JSON.stringify(employeDetails.value));
   openModal.value = false;
+  filtersStore.value = form;
+  console.log("filtersStore.value>>>>>>>", filtersStore.value);
 };
 
 // To prefill employee details
-const editEmployeForm = (employe) => {
+const editEmployeForm = (employe, index) => {
   prefillForm.value = { ...employe };
+  employeeIndex.value = index;
   openEditModal.value = true;
 };
 
@@ -64,7 +68,17 @@ const deleteRow = (index) => {
 
 // Updates Employe details
 const updateFormData = (employee) => {
-  employeDetails.value = employee;
+  employeDetails.value.find((item, index) => {
+    if (employeeIndex.value == index) {
+      item.name = employee.name;
+      item.age = employee.age;
+      item.gender = employee.gender;
+      item.date_of_joining = employee.date_of_joining;
+      item.department = employee.department;
+    }
+    localStorage.setItem("usersList", JSON.stringify(employeDetails.value));
+  });
+  openEditModal.value = false;
 };
 
 const searchEmploye = (results) => {

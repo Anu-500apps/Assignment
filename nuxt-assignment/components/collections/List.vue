@@ -59,7 +59,7 @@
                     scope="col"
                     class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                   >
-                    Date Of Joinig
+                    Date Of Joining
                   </th>
                   <th
                     scope="col"
@@ -94,7 +94,7 @@
                     {{ employe.age }}
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    {{ employe.gender }}
+                  <img :src="employe.gender=='Female' ? `https://icon2.cleanpng.com/20180319/vwq/kisspng-computer-icons-user-profile-avatar-profile-transparent-png-5ab03f3dba6729.3105587215214999657635.jpg` :`https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg`" class="w-7 h-7"/> {{ employe.gender }}
                   </td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     {{ employe.date_of_joining }}
